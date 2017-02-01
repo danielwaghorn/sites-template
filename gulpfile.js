@@ -55,7 +55,7 @@ gulp.task('js',function(){
     }))
     .pipe(uglify())
    	.on('error', gutil.log)	
-	.pipe(sourcemaps.write('./js'))
+	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest('./dist/js/'))
     .pipe(browserSync.stream())
         .pipe(notify('JavaScript Compiled'))
@@ -68,7 +68,7 @@ gulp.task('html',function(){
         .pipe(notify('HTML Copied'))
 });
 
-gulp.task('default',function(){
+gulp.task('watch',function(){
     browserSync.init({
         server: "./dist"
     });
@@ -77,3 +77,5 @@ gulp.task('default',function(){
     gulp.watch('app/*.html',['html']);
     gulp.watch('app/assets/**/*',['image']);
 });
+
+gulp.task('default', ['js','sass','html','watch']);
