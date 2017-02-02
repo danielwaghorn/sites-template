@@ -68,7 +68,7 @@ gulp.task('html',function(){
         .pipe(notify('HTML Copied'))
 });
 
-gulp.task('watch',function(){
+gulp.task('watch', ['js','sass','html'], function(){
     browserSync.init({
         server: "./dist"
     });
